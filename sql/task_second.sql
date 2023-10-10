@@ -1,3 +1,31 @@
+CREATE TABLE employee (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE sales (
+    id SERIAL PRIMARY KEY,
+    employee_id INT,
+    price INT,
+    FOREIGN KEY (employee_id) REFERENCES employee(id)
+);
+
+
+INSERT INTO employee (name) VALUES
+    ('Сотрудник 1'),
+    ('Сотрудник 2'),
+    ('Сотрудник 3');
+
+INSERT INTO sales (employee_id, price) VALUES
+    (1, 500),
+    (1, 300),
+    (2, 700),
+    (2, 800),
+    (3, 600),
+    (3, 400),
+    (3, 300);
+
+
 WITH sales_summary AS (
   SELECT
     e.id AS employee_id,
